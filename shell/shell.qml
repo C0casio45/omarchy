@@ -1379,9 +1379,8 @@ ShellRoot {
         onStatusChanged: {
           if (status === Loader.Error) {
             // Loader exposes no errorString(); the bare identifier threw a
-            // ReferenceError and this handler never reached shell.hide(). Only
-            // sourceComponent can carry a detail, and it is null for a source-load
-            // failure — so name the source and defer to the engine's own errors.
+            // ReferenceError and this handler never reached shell.hide(). The
+            // detail comes from the component the Loader built from `source`.
             var detail = sourceComponent ? sourceComponent.errorString() : ""
             console.warn("panel plugin " + panelEntry.pluginId + " failed to load (source: "
               + panelEntry.sourceUrl + "):", detail || "see the QML errors above")
